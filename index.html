@@ -3,43 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CleanClick</title>
+<title>CleanClick | Surgical Autonomy</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
---bg:#070a0f;
+--bg:#05070b;
 --panel:#0f141b;
 --accent:#2f7bff;
 --accent2:#00c2ff;
 --text:#eef4ff;
 --muted:#9fb1c7;
 --line:#1c2633;
+--success:#00ff88;
 }
 
-*{box-sizing:border-box}
+*{box-sizing:border-box; scroll-behavior: smooth;}
 
 body{
 margin:0;
 font-family:'Inter',sans-serif;
-background:#05070b;
+background:var(--bg);
 color:var(--text);
+line-height: 1.6;
 }
 
 header{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(5,7,11,.65);
-backdrop-filter:blur(10px);
+background:rgba(5,7,11,.8);
+backdrop-filter:blur(15px);
 border-bottom:1px solid var(--line);
-z-index:10;
+z-index:100;
 }
 
 .nav{
 max-width:1150px;
 margin:auto;
-padding:20px 24px;
+padding:15px 24px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -47,8 +49,9 @@ align-items:center;
 
 .logo{
 font-weight:700;
-font-size:22px;
-letter-spacing:.5px;
+font-size:24px;
+letter-spacing:1px;
+color: var(--text);
 }
 
 .nav a{
@@ -56,14 +59,17 @@ margin-left:24px;
 text-decoration:none;
 color:var(--muted);
 font-size:14px;
+font-weight: 500;
+transition: 0.3s;
 }
+
+.nav a:hover{ color: var(--accent2); }
 
 .hero{
 height:100vh;
 background-image:url("https://img.freepik.com/premium-photo/three-surgeons-doing-laparoscopic-surgery-doctors-looking-image-monitor-medicine-healthcare-concept-internal-organ-patient-seen-computer-monitor_40385379.htm");
 background-size:cover;
 background-position:center;
-background-attachment:fixed;
 position:relative;
 display:flex;
 align-items:center;
@@ -76,51 +82,48 @@ padding:40px;
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(rgba(5,7,11,.75), rgba(5,7,11,.9));
+background:linear-gradient(rgba(5,7,11,0.5), rgba(5,7,11,1));
 }
 
 .hero-content{
 position:relative;
-max-width:850px;
-animation:fadeUp 1.4s ease;
-}
-
-.tag{
-color:var(--accent);
-letter-spacing:2px;
-text-transform:uppercase;
-font-size:12px;
-margin-bottom:16px;
+max-width:900px;
+animation:fadeUp 1s ease forwards;
 }
 
 .hero h1{
-font-size:80px;
+font-size: clamp(50px, 10vw, 100px);
 margin:0;
-letter-spacing:-2px;
+letter-spacing:-4px;
+font-weight: 800;
+background: linear-gradient(to bottom, #fff, #9fb1c7);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 .hero p{
-margin:24px auto 40px auto;
-font-size:19px;
-line-height:1.7;
+margin:20px auto 40px auto;
+font-size: clamp(18px, 2.5vw, 22px);
 color:var(--muted);
+max-width: 700px;
 }
 
 .btn{
 background:linear-gradient(135deg,var(--accent),var(--accent2));
-padding:14px 28px;
-border-radius:8px;
+padding:18px 36px;
+border-radius:12px;
 text-decoration:none;
 color:white;
-font-weight:600;
+font-weight:700;
 margin:10px;
 display:inline-block;
-box-shadow:0 10px 30px rgba(47,123,255,.35);
-transition:.25s;
+transition:.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+box-shadow: 0 10px 20px rgba(47,123,255,0.2);
 }
 
 .btn:hover{
-transform:translateY(-4px);
+transform:translateY(-5px);
+box-shadow:0 15px 35px rgba(47,123,255,.4);
 }
 
 .container{
@@ -131,79 +134,96 @@ padding:100px 24px;
 
 .grid{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:70px;
+grid-template-columns: 1.2fr 0.8fr;
+gap:80px;
+align-items: start;
 }
 
-h2{
-font-size:34px;
-margin-bottom:20px;
+h2{ font-size: 38px; margin-bottom: 24px; letter-spacing: -1px; }
+
+.data-card{
+background: var(--panel);
+border: 1px solid var(--line);
+border-radius: 24px;
+padding: 40px;
 }
 
-p{
-color:var(--muted);
-line-height:1.7;
+.stat { margin-bottom: 30px; }
+.stat-val { font-size: 40px; font-weight: 700; color: var(--accent2); display: block; }
+.stat-label { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+.roadmap-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+margin-top: 40px;
 }
 
-.team{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
-margin-top:40px;
+.roadmap-item {
+padding: 24px;
+background: var(--panel);
+border: 1px solid var(--line);
+border-radius: 16px;
 }
 
-.card{
-background:var(--panel);
-border:1px solid var(--line);
-padding:30px;
-border-radius:14px;
-text-align:center;
-transition:.25s;
+.roadmap-item h4 { color: var(--accent2); margin-top: 0; }
+
+.team-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 30px;
+margin-top: 50px;
 }
 
-.card:hover{
-transform:translateY(-8px);
-border-color:var(--accent);
+.team-card {
+background: var(--panel);
+border: 1px solid var(--line);
+padding: 40px 20px;
+border-radius: 24px;
+text-align: center;
+transition: 0.3s;
 }
 
-.avatar{
-width:90px;
-height:90px;
-border-radius:50%;
-margin:auto;
-margin-bottom:18px;
-background:linear-gradient(135deg,var(--accent),var(--accent2));
+.team-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+
+.avatar-circle {
+width: 80px;
+height: 80px;
+background: linear-gradient(135deg, var(--accent), var(--accent2));
+border-radius: 50%;
+margin: 0 auto 20px auto;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 700;
+font-size: 24px;
 }
 
-.major{
-font-size:14px;
-margin-top:8px;
-color:#c2d2e7;
+.li-link {
+display: inline-block;
+margin-top: 15px;
+color: #00a0dc;
+text-decoration: none;
+font-weight: 600;
+font-size: 14px;
 }
 
-.contact{
-font-size:13px;
-margin-top:6px;
-color:#7fa6ff;
-}
-
-footer{
-margin-top:120px;
-padding:60px 20px;
-border-top:1px solid var(--line);
-text-align:center;
-color:var(--muted);
+footer {
+text-align: center;
+padding: 60px 20px;
+border-top: 1px solid var(--line);
+color: var(--muted);
+font-size: 14px;
 }
 
 @keyframes fadeUp{
-0%{opacity:0;transform:translateY(40px)}
-100%{opacity:1;transform:translateY(0)}
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1;transform:translateY(0)}
 }
 
 @media(max-width:900px){
-.hero h1{font-size:52px}
-.grid{grid-template-columns:1fr}
-.team{grid-template-columns:1fr}
+.grid, .roadmap-grid { grid-template-columns: 1fr; }
+.hero h1 { font-size: 60px; }
 }
 
 </style>
@@ -216,112 +236,106 @@ color:var(--muted);
 <div class="logo">CleanClick</div>
 <div>
 <a href="#mission">Mission</a>
-<a href="#solution">Solution</a>
+<a href="#tech">Technology</a>
 <a href="#team">Team</a>
 </div>
 </div>
 </header>
 
 <section class="hero">
-
 <div class="hero-content">
-
-<div class="tag">TU Eindhoven Contest Team</div>
-
+<div style="color:var(--accent2); font-weight:700; letter-spacing:2px; margin-bottom:10px;">TU EINDHOVEN CONTEST 2026</div>
 <h1>CleanClick</h1>
-
-<p>
-A neuromuscular surgical interface that converts subtle forearm muscle signals into direct control of medical imaging and digital systems—allowing surgeons to navigate data without breaking sterility.
-</p>
-
-<a class="btn" href="#solution">Explore Technology</a>
-<a class="btn" href="#team">Meet the Team</a>
-
+<p>The sterile neuromuscular interface. Control medical imaging through your surgical gown—no touch, no talk, just flow.</p>
+<a class="btn" href="#mission">View Validation Data</a>
+<a class="btn" style="background:transparent; border: 1px solid var(--line);" href="#tech">Our Roadmap</a>
 </div>
-
 </section>
 
 <section class="container" id="mission">
-
 <div class="grid">
-
 <div>
 <h2>The Mission</h2>
-<p>
-CleanClick aims to restore digital autonomy to surgeons inside the operating room. While surgical technology has advanced rapidly, direct interaction with medical data is still constrained by sterile protocols.
-</p>
-
-<p>
-By translating neuromuscular signals into digital commands, CleanClick allows surgeons to control imaging and software naturally, removing communication barriers and improving workflow efficiency in high‑stakes clinical environments.
-</p>
+<p>CleanClick aims to restore <strong>digital autonomy</strong> to surgeons. While operating rooms have advanced, interacting with digital data remains a bottleneck. Currently, surgeons must break sterility or rely on verbal delegation to navigate scans.</p>
+<p>Our solution utilizes surface Electromyography (sEMG) to translate micro-muscle impulses into digital commands. This eliminates communication lag and keeps the surgeon in full control of their tools and their data.</p>
+<h3>The Problem Summary</h3>
+<p>Every minute in the OR costs roughly €100. Verbal relay for "scrolling" or "zooming" introduces delays and cognitive friction. CleanClick solves this by moving the control from the assistant's hands directly to the surgeon's arm.</p>
 </div>
 
-<div>
-<h2>The Challenge</h2>
-<p>
-During many complex procedures, surgeons must rely on assistants to manipulate imaging systems and patient data displayed on monitors.
-</p>
+<div class="data-card">
+<h3 style="margin-top:0; font-size: 20px;">User Validation (n=20)</h3>
+<div class="stat">
+<span class="stat-val">85%</span>
+<span class="stat-label">Reported Communication Lag</span>
+</div>
+<div class="stat">
+<span class="stat-val">70%</span>
+<span class="stat-label">Avoid Scans due to Hassle</span>
+</div>
+<div class="stat" style="margin:0;">
+<span class="stat-val">4.2/5</span>
+<span class="stat-label">Frustration with Current Workflow</span>
+</div>
+</div>
+</div>
+</section>
 
-<p>
-These repeated communication loops interrupt concentration, introduce delays, and extend operating room time—one of the most expensive resources in modern healthcare.
-</p>
+<section class="container" id="tech" style="background: rgba(47,123,255,0.03); border-radius: 40px; padding: 60px 40px;">
+<div style="text-align:center; max-width: 800px; margin: 0 auto 60px auto;">
+<h2>Prototype Roadmap</h2>
+<p style="color:var(--muted)">We are bridging the gap between clinical need and engineering reality. Here is our path from validation to a sterile-ready product.</p>
 </div>
 
-<div id="solution">
-<h2>The Solution</h2>
-<p>
-CleanClick is a wearable bio‑electronic interface that detects micro‑muscle activity using surface electromyography (sEMG). Even through surgical clothing, the device captures subtle forearm signals and converts them into precise digital commands.
-</p>
-
-<p>
-This enables sterile, hands‑free interaction with imaging systems and medical software, allowing surgeons to remain fully focused on the procedure.
-</p>
+<div class="roadmap-grid">
+<div class="roadmap-item">
+<h4>Sprint #1: Logic</h4>
+<p>Defining clinical pain points and validating the "Digital Paralysis" problem with 20+ professionals. (Complete)</p>
 </div>
-
-<div>
-<h2>Project Summary</h2>
-<p>
-Developed at TU Eindhoven for the TU/e Contest, CleanClick explores how wearable neural interfaces can transform human‑computer interaction in operating rooms. The project integrates biomedical sensing, signal processing, and intuitive interface design to reduce workflow friction and enable faster clinical decision‑making.
-</p>
+<div class="roadmap-item" style="border-color: var(--accent2);">
+<h4>Sprint #2: Sensing</h4>
+<p>Currently modeling sEMG signal-to-noise ratios through surgical gowns and developing the "Clutch-Gate" unlock logic.</p>
 </div>
-
+<div class="roadmap-item">
+<h4>Sprint #3: MVP</h4>
+<p>Integration of low-latency Bluetooth HID and final UX testing in a sterile mock-up environment.</p>
 </div>
-
+</div>
 </section>
 
 <section class="container" id="team">
+<h2 style="text-align:center;">The CleanClick Team</h2>
+<div class="team-grid">
 
-<h2>The Team</h2>
-
-<div class="team">
-
-<div class="card">
-<div class="avatar"></div>
+<div class="team-card">
+<div class="avatar-circle">AS</div>
 <h3>Arshiya Tasneem Shaik</h3>
-<div class="major">Double BSc Computer Science & Applied Physics</div>
-<div class="contact">a.t.shaik@student.tue.nl</div>
+<p style="margin:5px 0; color:var(--accent2); font-weight:600;">Computer Science & Applied Physics</p>
+<p style="font-size:13px;">a.t.shaik@student.tue.nl</p>
+<a href="https://www.linkedin.com/in/arshiya-shaik-569753313/" class="li-link" target="_blank">LinkedIn Profile →</a>
 </div>
 
-<div class="card">
-<div class="avatar"></div>
+<div class="team-card">
+<div class="avatar-circle">RT</div>
 <h3>Reinis Tjarve</h3>
-<div class="major">BSc Applied Physics</div>
-<div class="contact">r.tjarve@student.tue.nl</div>
+<p style="margin:5px 0; color:var(--accent2); font-weight:600;">Applied Physics</p>
+<p style="font-size:13px;">r.tjarve@student.tue.nl</p>
+<a href="https://www.linkedin.com/in/reinis-tjarve-79530b327/" class="li-link" target="_blank">LinkedIn Profile →</a>
 </div>
 
-<div class="card">
-<div class="avatar"></div>
+<div class="team-card">
+<div class="avatar-circle">KG</div>
 <h3>Kristaps Grava</h3>
-<div class="major">BSc Mechanical Engineering</div>
-<div class="contact">k.grava@student.tue.nl</div>
+<p style="margin:5px 0; color:var(--accent2); font-weight:600;">Mechanical Engineering</p>
+<p style="font-size:13px;">k.grava@student.tue.nl</p>
+<a href="https://www.linkedin.com/in/kristaps-grava-215871326/" class="li-link" target="_blank">LinkedIn Profile →</a>
 </div>
 
 </div>
-
 </section>
 
 <footer>
-CleanClick — TU Eindhoven Contest Team 2026
+CleanClick — TU Eindhoven Contest Team 2026<br>
+<small style="opacity:0.6; margin-top:10px; display:block;">Solving the Sterile Barrier through Neuromuscular Innovation.</small>
 </footer>
 
 </body>
