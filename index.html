@@ -15,7 +15,6 @@
 --text:#eef4ff;
 --muted:#9fb1c7;
 --line:#1c2633;
---success:#00ff88;
 }
 
 *{box-sizing:border-box; scroll-behavior: smooth;}
@@ -51,7 +50,6 @@ align-items:center;
 font-weight:700;
 font-size:24px;
 letter-spacing:1px;
-color: var(--text);
 }
 
 .nav a{
@@ -117,8 +115,7 @@ color:white;
 font-weight:700;
 margin:10px;
 display:inline-block;
-transition:.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-box-shadow: 0 10px 20px rgba(47,123,255,0.2);
+transition:.3s;
 }
 
 .btn:hover{
@@ -132,25 +129,7 @@ margin:auto;
 padding:100px 24px;
 }
 
-.grid{
-display:grid;
-grid-template-columns: 1.2fr 0.8fr;
-gap:80px;
-align-items: start;
-}
-
-h2{ font-size: 38px; margin-bottom: 24px; letter-spacing: -1px; }
-
-.data-card{
-background: var(--panel);
-border: 1px solid var(--line);
-border-radius: 24px;
-padding: 40px;
-}
-
-.stat { margin-bottom: 30px; }
-.stat-val { font-size: 40px; font-weight: 700; color: var(--accent2); display: block; }
-.stat-label { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+h2{ font-size: 38px; margin-bottom: 24px; }
 
 .roadmap-grid {
 display: grid;
@@ -165,8 +144,6 @@ background: var(--panel);
 border: 1px solid var(--line);
 border-radius: 16px;
 }
-
-.roadmap-item h4 { color: var(--accent2); margin-top: 0; }
 
 .team-grid {
 display: grid;
@@ -199,15 +176,6 @@ font-weight: 700;
 font-size: 24px;
 }
 
-.li-link {
-display: inline-block;
-margin-top: 15px;
-color: #00a0dc;
-text-decoration: none;
-font-weight: 600;
-font-size: 14px;
-}
-
 footer {
 text-align: center;
 padding: 60px 20px;
@@ -222,10 +190,9 @@ to{opacity:1;transform:translateY(0)}
 }
 
 @media(max-width:900px){
-.grid, .roadmap-grid { grid-template-columns: 1fr; }
+.roadmap-grid { grid-template-columns: 1fr; }
 .hero h1 { font-size: 60px; }
 }
-
 </style>
 </head>
 
@@ -244,98 +211,63 @@ to{opacity:1;transform:translateY(0)}
 
 <section class="hero">
 <div class="hero-content">
-<div style="color:var(--accent2); font-weight:700; letter-spacing:2px; margin-bottom:10px;">TU EINDHOVEN CONTEST 2026</div>
+<div style="color:var(--accent2); font-weight:700; letter-spacing:2px;">TU EINDHOVEN CONTEST 2026</div>
 <h1>CleanClick</h1>
 <p>The sterile neuromuscular interface. Control medical imaging through your surgical gown—no touch, no talk, just flow.</p>
-<a class="btn" href="#mission">View Validation Data</a>
+<a class="btn" href="#mission">Explore Mission</a>
 <a class="btn" style="background:transparent; border: 1px solid var(--line);" href="#tech">Our Roadmap</a>
 </div>
 </section>
 
 <section class="container" id="mission">
-<div class="grid">
-<div>
 <h2>The Mission</h2>
-<p>CleanClick aims to restore <strong>digital autonomy</strong> to surgeons. While operating rooms have advanced, interacting with digital data remains a bottleneck. Currently, surgeons must break sterility or rely on verbal delegation to navigate scans.</p>
-<p>Our solution utilizes surface Electromyography (sEMG) to translate micro-muscle impulses into digital commands. This eliminates communication lag and keeps the surgeon in full control of their tools and their data.</p>
-<h3>The Problem Summary</h3>
-<p>Every minute in the OR costs roughly €100. Verbal relay for "scrolling" or "zooming" introduces delays and cognitive friction. CleanClick solves this by moving the control from the assistant's hands directly to the surgeon's arm.</p>
-</div>
-
-<div class="data-card">
-<h3 style="margin-top:0; font-size: 20px;">User Validation (n=20)</h3>
-<div class="stat">
-<span class="stat-val">85%</span>
-<span class="stat-label">Reported Communication Lag</span>
-</div>
-<div class="stat">
-<span class="stat-val">70%</span>
-<span class="stat-label">Avoid Scans due to Hassle</span>
-</div>
-<div class="stat" style="margin:0;">
-<span class="stat-val">4.2/5</span>
-<span class="stat-label">Frustration with Current Workflow</span>
-</div>
-</div>
-</div>
+<p>CleanClick aims to restore <strong>digital autonomy</strong> to surgeons. While operating rooms have advanced, interacting with digital data remains a bottleneck.</p>
+<p>Our solution utilizes surface Electromyography (sEMG) to translate micro-muscle impulses into digital commands, keeping surgeons in full control.</p>
 </section>
 
-<section class="container" id="tech" style="background: rgba(47,123,255,0.03); border-radius: 40px; padding: 60px 40px;">
-<div style="text-align:center; max-width: 800px; margin: 0 auto 60px auto;">
-<h2>Prototype Roadmap</h2>
-<p style="color:var(--muted)">We are bridging the gap between clinical need and engineering reality. Here is our path from validation to a sterile-ready product.</p>
-</div>
+<section class="container" id="tech">
+<h2 style="text-align:center;">Prototype Roadmap</h2>
 
 <div class="roadmap-grid">
 <div class="roadmap-item">
 <h4>Sprint #1: Logic</h4>
-<p>Defining clinical pain points and validating the "Digital Paralysis" problem with 20+ professionals. (Complete)</p>
+<p>Defining clinical pain points and validating the problem.</p>
 </div>
-<div class="roadmap-item" style="border-color: var(--accent2);">
+<div class="roadmap-item">
 <h4>Sprint #2: Sensing</h4>
-<p>Currently modeling sEMG signal-to-noise ratios through surgical gowns and developing the "Clutch-Gate" unlock logic.</p>
+<p>Modeling sEMG signals and developing control logic.</p>
 </div>
 <div class="roadmap-item">
 <h4>Sprint #3: MVP</h4>
-<p>Integration of low-latency Bluetooth HID and final UX testing in a sterile mock-up environment.</p>
+<p>Integration and UX testing in a sterile environment.</p>
 </div>
 </div>
 </section>
 
 <section class="container" id="team">
 <h2 style="text-align:center;">The CleanClick Team</h2>
-<div class="team-grid">
 
+<div class="team-grid">
 <div class="team-card">
 <div class="avatar-circle">AS</div>
 <h3>Arshiya Tasneem Shaik</h3>
-<p style="margin:5px 0; color:var(--accent2); font-weight:600;">Computer Science & Applied Physics</p>
-<p style="font-size:13px;">a.t.shaik@student.tue.nl</p>
-<a href="https://www.linkedin.com/in/arshiya-shaik-569753313/" class="li-link" target="_blank">LinkedIn Profile →</a>
 </div>
 
 <div class="team-card">
 <div class="avatar-circle">RT</div>
 <h3>Reinis Tjarve</h3>
-<p style="margin:5px 0; color:var(--accent2); font-weight:600;">Applied Physics</p>
-<p style="font-size:13px;">r.tjarve@student.tue.nl</p>
-<a href="https://www.linkedin.com/in/reinis-tjarve-79530b327/" class="li-link" target="_blank">LinkedIn Profile →</a>
 </div>
 
 <div class="team-card">
 <div class="avatar-circle">KG</div>
 <h3>Kristaps Grava</h3>
-<p style="margin:5px 0; color:var(--accent2); font-weight:600;">Mechanical Engineering</p>
-<p style="font-size:13px;">k.grava@student.tue.nl</p>
-<a href="https://www.linkedin.com/in/kristaps-grava-215871326/" class="li-link" target="_blank">LinkedIn Profile →</a>
+</div>
 </div>
 
-</div>
 </section>
 
 <footer>
-CleanClick — TU Eindhoven Contest Team 2026<br>
-<small style="opacity:0.6; margin-top:10px; display:block;">Solving the Sterile Barrier through Neuromuscular Innovation.</small>
+CleanClick — TU Eindhoven Contest Team 2026
 </footer>
 
 </body>
