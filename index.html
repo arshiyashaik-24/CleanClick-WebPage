@@ -1,343 +1,851 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CleanClick | Surgical Autonomy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanClick | Sterile Autonomy for Modern Surgery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+        :root {
+            --bg-dark: #05070b;
+            --bg-darker: #020305;
+            --electric-blue: #00c2ff;
+            --surgical-blue: #2f7bff;
+            --neon-green: #00ff88;
+            --text-light: #e8ecf1;
+            --text-muted: #8b9db0;
+        }
 
-<style>
-:root{
---bg:#05070b;
---panel:#0f141b;
---accent:#2f7bff;
---accent2:#00c2ff;
---text:#eef4ff;
---muted:#9fb1c7;
---line:#1c2633;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-*{box-sizing:border-box; scroll-behavior:smooth;}
+        /* Animated Background Grid */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image: 
+                linear-gradient(var(--surgical-blue) 1px, transparent 1px),
+                linear-gradient(90deg, var(--surgical-blue) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridPulse 20s ease-in-out infinite;
+        }
 
-body{
-margin:0;
-font-family:'Inter',sans-serif;
-background:var(--bg);
-color:var(--text);
-}
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+        }
 
-header{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(5,7,11,.8);
-backdrop-filter:blur(15px);
-border-bottom:1px solid var(--line);
-z-index:100;
-}
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-.nav{
-max-width:1100px;
-margin:auto;
-padding:15px 24px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 194, 255, 0.1) 0%, transparent 70%);
+            animation: heroGlow 15s ease-in-out infinite;
+        }
 
-.logo{font-weight:700;font-size:22px;}
+        @keyframes heroGlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, 20px) scale(1.1); }
+        }
 
-.nav a{
-margin-left:20px;
-color:var(--muted);
-text-decoration:none;
-font-size:14px;
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+        }
 
-.nav a:hover{color:var(--accent2);}
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--electric-blue), var(--neon-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+            letter-spacing: -0.02em;
+        }
 
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-background:url("https://img.freepik.com/premium-photo/three-surgeons-doing-laparoscopic-surgery-doctors-looking-image-monitor-medicine-healthcare-concept-internal-organ-patient-seen-computer-monitor_40385379.htm") center/cover;
-position:relative;
-}
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.hero::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,1));
-}
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.hero-content{position:relative;max-width:800px;}
+        .cta-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
 
-.hero h1{
-font-size:80px;
-margin:0;
-background:linear-gradient(#fff,#9fb1c7);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
+        .cta-btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+        }
 
-.hero p{color:var(--muted);margin:20px 0;}
+        .cta-primary {
+            background: linear-gradient(135deg, var(--electric-blue), var(--surgical-blue));
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 194, 255, 0.3);
+        }
 
-.btn{
-padding:14px 28px;
-background:linear-gradient(135deg,var(--accent),var(--accent2));
-border-radius:10px;
-text-decoration:none;
-color:white;
-display:inline-block;
-margin:10px;
-}
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 194, 255, 0.5);
+        }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:100px 20px;
-}
+        .cta-secondary {
+            background: transparent;
+            color: var(--electric-blue);
+            border: 2px solid var(--electric-blue);
+        }
 
-h2{font-size:36px;margin-bottom:30px;}
+        .cta-secondary:hover {
+            background: rgba(0, 194, 255, 0.1);
+            transform: translateY(-3px);
+        }
 
-.grid{
-display:grid;
-grid-template-columns:1.2fr 0.8fr;
-gap:60px;
-}
+        /* Section Container */
+        .section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
 
-.timeline{
-position:relative;
-max-width:800px;
-margin:60px auto;
-border-left:2px solid var(--line);
-padding-left:20px;
-}
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--electric-blue), white);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.timeline-item{
-margin-bottom:50px;
-position:relative;
-}
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.timeline-dot{
-position:absolute;
-left:-11px;
-top:5px;
-width:20px;
-height:20px;
-background:linear-gradient(135deg,var(--accent),var(--accent2));
-border-radius:50%;
-box-shadow:0 0 15px rgba(47,123,255,.5);
-}
+        /* How It Works Section */
+        .interactive-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
 
-.timeline-content h3{
-margin:0;
-color:var(--accent2);
-}
+        .process-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 194, 255, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
 
-.timeline-content p{
-color:var(--muted);
-font-size:15px;
-}
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--electric-blue), var(--neon-green));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
 
-.roadmap-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
+        .process-card:hover::before {
+            transform: scaleX(1);
+        }
 
-.roadmap-item{
-background:var(--panel);
-padding:20px;
-border-radius:12px;
-border:1px solid var(--line);
-}
+        .process-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--electric-blue);
+            box-shadow: 0 20px 60px rgba(0, 194, 255, 0.2);
+        }
 
-.team-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-margin-top:40px;
-}
+        .process-icon {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
 
-.team-card{
-background:var(--panel);
-padding:30px;
-border-radius:20px;
-text-align:center;
-border:1px solid var(--line);
-}
+        .process-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--electric-blue);
+        }
 
-.avatar{
-width:70px;
-height:70px;
-border-radius:50%;
-background:linear-gradient(135deg,var(--accent),var(--accent2));
-display:flex;
-align-items:center;
-justify-content:center;
-margin:auto;
-font-weight:700;
-}
+        .process-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
 
-footer{
-text-align:center;
-padding:40px;
-border-top:1px solid var(--line);
-color:var(--muted);
-}
+        /* SVG Animations */
+        .ecg-wave {
+            width: 100%;
+            height: 100%;
+        }
 
-@media(max-width:900px){
-.grid{grid-template-columns:1fr;}
-.roadmap-grid{grid-template-columns:1fr;}
-.hero h1{font-size:50px;}
-}
-</style>
+        .ecg-line {
+            stroke: var(--neon-green);
+            stroke-width: 3;
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawECG 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px var(--neon-green));
+        }
+
+        @keyframes drawECG {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .grid-box {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .grid-lines {
+            stroke: var(--surgical-blue);
+            stroke-width: 1;
+            opacity: 0.4;
+        }
+
+        .data-pulse {
+            fill: var(--electric-blue);
+            opacity: 0.6;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .cursor-move {
+            fill: var(--neon-green);
+            animation: moveCursor 3s ease-in-out infinite;
+        }
+
+        @keyframes moveCursor {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(40px, 30px); }
+        }
+
+        /* Features Section */
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(0, 194, 255, 0.05), rgba(47, 123, 255, 0.05));
+            border: 1px solid rgba(0, 194, 255, 0.15);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(180deg, transparent, rgba(0, 194, 255, 0.1));
+            transition: height 0.4s ease;
+        }
+
+        .feature-card:hover::after {
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--electric-blue);
+            box-shadow: 0 20px 50px rgba(0, 194, 255, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--electric-blue), var(--surgical-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Timeline Section */
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--surgical-blue), var(--electric-blue), var(--neon-green));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-left: 50%;
+            padding-right: 0;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 194, 255, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            width: 85%;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            border-color: var(--electric-blue);
+            box-shadow: 0 15px 40px rgba(0, 194, 255, 0.2);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px var(--electric-blue);
+            z-index: 2;
+        }
+
+        .timeline-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .status-complete {
+            background: rgba(0, 255, 136, 0.15);
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+        }
+
+        .status-active {
+            background: rgba(0, 194, 255, 0.15);
+            color: var(--electric-blue);
+            border: 1px solid var(--electric-blue);
+        }
+
+        .status-upcoming {
+            background: rgba(139, 157, 176, 0.15);
+            color: var(--text-muted);
+            border: 1px solid var(--text-muted);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--electric-blue);
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        .team-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 194, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 194, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .team-card:hover::before {
+            left: 100%;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--electric-blue);
+            box-shadow: 0 25px 60px rgba(0, 194, 255, 0.3);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--electric-blue), var(--surgical-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            border: 3px solid rgba(0, 194, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-role {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 194, 255, 0.1);
+            color: var(--electric-blue);
+            border: 1px solid var(--electric-blue);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .linkedin-btn:hover {
+            background: var(--electric-blue);
+            color: var(--bg-dark);
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-left: 80px;
+                padding-right: 0;
+            }
+
+            .timeline-marker {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-darker);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 194, 255, 0.1);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--electric-blue), var(--neon-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="grid-bg"></div>
 
-<header>
-<div class="nav">
-<div class="logo">CleanClick</div>
-<div>
-<a href="#mission">Mission</a>
-<a href="#timeline">Timeline</a>
-<a href="#tech">Technology</a>
-<a href="#team">Team</a>
-</div>
-</div>
-</header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sterile Autonomy.</h1>
+            <p class="hero-subtitle">
+                Control surgical displays with muscle impulses. No voice commands. No contamination. Just direct, seamless control under your sterile gown.
+            </p>
+            <div class="cta-container">
+                <a href="#how-it-works" class="cta-btn cta-primary">Explore the Tech</a>
+                <a href="#team" class="cta-btn cta-secondary">Meet the Team</a>
+            </div>
+        </div>
+    </section>
 
-<section class="hero">
-<div class="hero-content">
-<h1>CleanClick</h1>
-<p>The sterile neuromuscular interface. Control medical imaging through your surgical gown.</p>
-<a class="btn" href="#mission">Explore</a>
-</div>
-</section>
+    <!-- How It Works Section -->
+    <section class="section" id="how-it-works">
+        <h2 class="section-title reveal">How It Works</h2>
+        <p class="section-subtitle reveal">Sub-gestural control through three revolutionary stages</p>
+        
+        <div class="interactive-grid">
+            <div class="process-card reveal">
+                <div class="process-icon">
+                    <svg class="ecg-wave" viewBox="0 0 400 200">
+                        <path class="ecg-line" d="M 0 100 L 50 100 L 60 80 L 70 120 L 80 60 L 90 140 L 100 100 L 150 100 L 160 80 L 170 120 L 180 60 L 190 140 L 200 100 L 250 100 L 260 80 L 270 120 L 280 60 L 290 140 L 300 100 L 400 100"/>
+                    </svg>
+                </div>
+                <h3>Input: Muscle Signal</h3>
+                <p>Forearm sEMG sensors detect micro-muscle contractions in the flexor carpi radialis. Sub-gestural movements invisible to the naked eye, completely imperceptible under surgical gowns.</p>
+            </div>
 
-<section class="container" id="mission">
-<div class="grid">
-<div>
-<h2>The Mission</h2>
-<p>CleanClick restores digital autonomy to surgeons. Operating rooms are advanced, but interacting with digital data still breaks workflow.</p>
-<p>We use sEMG signals to translate micro-muscle movements into commands — eliminating communication delays and keeping surgeons in control.</p>
-</div>
-</div>
-</section>
+            <div class="process-card reveal">
+                <div class="process-icon">
+                    <svg class="grid-box" viewBox="0 0 400 200">
+                        <defs>
+                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <path class="grid-lines" d="M 40 0 L 0 0 0 40"/>
+                            </pattern>
+                        </defs>
+                        <rect width="400" height="200" fill="url(#grid)"/>
+                        <rect class="data-pulse" x="100" y="50" width="200" height="100" rx="10"/>
+                        <circle class="data-pulse" cx="200" cy="100" r="30"/>
+                    </svg>
+                </div>
+                <h3>Processing: Clutch-Gate Logic</h3>
+                <p>Proprietary algorithm filters ambient noise and surgical tool grip signals. The "clutch-gate" ensures zero false positives when holding instruments, activating only during intentional gestures.</p>
+            </div>
 
-<section class="container" id="timeline">
-<h2 style="text-align:center;">Project Timeline</h2>
+            <div class="process-card reveal">
+                <div class="process-icon">
+                    <svg class="grid-box" viewBox="0 0 400 200">
+                        <rect x="50" y="30" width="300" height="140" rx="10" fill="rgba(47, 123, 255, 0.1)" stroke="var(--surgical-blue)" stroke-width="2"/>
+                        <rect class="cursor-move" x="180" y="80" width="40" height="40" rx="5"/>
+                        <line x1="200" y1="60" x2="200" y2="140" stroke="var(--electric-blue)" stroke-width="2" opacity="0.3"/>
+                        <line x1="150" y1="100" x2="250" y2="100" stroke="var(--electric-blue)" stroke-width="2" opacity="0.3"/>
+                    </svg>
+                </div>
+                <h3>Output: Display Control</h3>
+                <p>Bluetooth HID output navigates CT/MRI scans, zooms imaging, and controls OR monitors. Instant, sterile, autonomous—without breaking surgical focus or asking for assistance.</p>
+            </div>
+        </div>
+    </section>
 
-<div class="timeline">
+    <!-- Features Section -->
+    <section class="section">
+        <h2 class="section-title reveal">Core Technology</h2>
+        <p class="section-subtitle reveal">Medical-grade innovation for the modern operating room</p>
+        
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon">⚡</div>
+                <h3>Sub-Gestural Control</h3>
+                <p>No large movements required. Imperceptible muscle contractions detected through fabric, preserving sterility and surgical precision.</p>
+            </div>
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">
-<h3>Phase 1 — Problem Discovery</h3>
-<p>Mapped surgical workflow friction and identified control bottlenecks.</p>
-</div>
-</div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">🛡️</div>
+                <h3>Clutch-Gate Logic</h3>
+                <p>Intelligent signal processing prevents "ghost clicks" during surgical tool manipulation. Activates only during deliberate control gestures.</p>
+            </div>
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">
-<h3>Phase 2 — Signal Exploration</h3>
-<p>Tested sEMG signals through surgical gowns and evaluated reliability.</p>
-</div>
-</div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">👁️</div>
+                <h3>Zero Line-of-Sight</h3>
+                <p>Unlike camera-based systems, CleanClick works perfectly even when staff block the view. Direct muscle interface, zero optical dependencies.</p>
+            </div>
+        </div>
+    </section>
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">
-<h3>Phase 3 — Interaction Design</h3>
-<p>Designed gesture-based control and clutch logic.</p>
-</div>
-</div>
+    <!-- Timeline Section -->
+    <section class="section" id="roadmap">
+        <h2 class="section-title reveal">Development Roadmap</h2>
+        <p class="section-subtitle reveal">From concept to clinical validation</p>
+        
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-status status-complete">✓ Complete</span>
+                        <h3>Sprint 1: Foundation</h3>
+                        <p>Clinical use case definition, stakeholder interviews with surgeons at Catharina Hospital, and comprehensive problem validation. Established core technical requirements and sterility constraints.</p>
+                    </div>
+                </div>
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">
-<h3>Phase 4 — Prototype Build</h3>
-<p>Integrated sensors with low-latency interface.</p>
-</div>
-</div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-status status-active">⚙ Active</span>
+                        <h3>Sprint 2: Engineering</h3>
+                        <p>Sensor benchmarking (Myoware 2.0, Ultium EMG, Advancer Technologies). Gown attenuation modeling and signal integrity testing. Material science analysis for optimal placement.</p>
+                    </div>
+                </div>
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">
-<h3>Phase 5 — Testing</h3>
-<p>Simulated OR testing and refinement.</p>
-</div>
-</div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-status status-upcoming">→ Upcoming</span>
+                        <h3>Sprint 3: Validation</h3>
+                        <p>Bluetooth HID MVP development and dry-lab validation. Gesture library refinement, latency optimization, and initial user testing with surgical residents.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <!-- Team Section -->
+    <section class="section" id="team">
+        <h2 class="section-title reveal">The Team</h2>
+        <p class="section-subtitle reveal">Interdisciplinary innovators from TU Eindhoven</p>
+        
+        <div class="team-grid">
+            <div class="team-card reveal">
+                <div class="team-avatar">AS</div>
+                <h3>Arshiya Tasneem Shaik</h3>
+                <p class="team-role">Computer Science & Applied Physics</p>
+                <a href="https://www.linkedin.com/in/arshiya-shaik-569753313/" target="_blank" class="linkedin-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
 
-<h3 style="text-align:center;margin-top:50px;">
-From Idea → Operating Room Reality
-</h3>
+            <div class="team-card reveal">
+                <div class="team-avatar">RT</div>
+                <h3>Reinis Tjarve</h3>
+                <p class="team-role">Applied Physics</p>
+                <a href="https://www.linkedin.com/in/reinis-tjarve-79530b327/" target="_blank" class="linkedin-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
 
-</section>
+            <div class="team-card reveal">
+                <div class="team-avatar">KG</div>
+                <h3>Kristaps Grava</h3>
+                <p class="team-role">Mechanical Engineering</p>
+                <a href="https://www.linkedin.com/in/kristaps-grava-215871326/" target="_blank" class="linkedin-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
 
-<section class="container" id="tech">
-<h2 style="text-align:center;">Prototype Roadmap</h2>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">CleanClick</div>
+        <p>&copy; 2026 CleanClick | TU Eindhoven TU/e Contest</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Sterile Autonomy for Modern Surgery</p>
+    </footer>
 
-<div class="roadmap-grid">
-<div class="roadmap-item">
-<h4>Sprint #1</h4>
-<p>Problem definition</p>
-</div>
-<div class="roadmap-item">
-<h4>Sprint #2</h4>
-<p>Signal modeling</p>
-</div>
-<div class="roadmap-item">
-<h4>Sprint #3</h4>
-<p>MVP build</p>
-</div>
-</div>
-</section>
+    <script>
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
 
-<section class="container" id="team">
-<h2 style="text-align:center;">The Team</h2>
+        window.addEventListener('scroll', reveal);
+        reveal(); // Trigger on load
 
-<div class="team-grid">
-
-<div class="team-card">
-<div class="avatar">AS</div>
-<h3>Arshiya Tasneem Shaik</h3>
-<p>Computer Science & Applied Physics</p>
-<p>a.t.shaik@student.tue.nl</p>
-<a href="https://www.linkedin.com/in/arshiya-shaik-569753313/" target="_blank">LinkedIn</a>
-</div>
-
-<div class="team-card">
-<div class="avatar">RT</div>
-<h3>Reinis Tjarve</h3>
-<p>Applied Physics</p>
-<p>r.tjarve@student.tue.nl</p>
-<a href="https://www.linkedin.com/in/reinis-tjarve-79530b327/" target="_blank">LinkedIn</a>
-</div>
-
-<div class="team-card">
-<div class="avatar">KG</div>
-<h3>Kristaps Grava</h3>
-<p>Mechanical Engineering</p>
-<p>k.grava@student.tue.nl</p>
-<a href="https://www.linkedin.com/in/kristaps-grava-215871326/" target="_blank">LinkedIn</a>
-</div>
-
-</div>
-</section>
-
-<footer>
-CleanClick — TU Eindhoven Contest 2026
-</footer>
-
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
