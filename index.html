@@ -129,6 +129,13 @@ margin:auto;
 padding:100px 24px;
 }
 
+.grid{
+display:grid;
+grid-template-columns: 1.2fr 0.8fr;
+gap:80px;
+align-items: start;
+}
+
 h2{ font-size: 38px; margin-bottom: 24px; }
 
 .roadmap-grid {
@@ -176,6 +183,15 @@ font-weight: 700;
 font-size: 24px;
 }
 
+.li-link {
+display: inline-block;
+margin-top: 15px;
+color: #00a0dc;
+text-decoration: none;
+font-weight: 600;
+font-size: 14px;
+}
+
 footer {
 text-align: center;
 padding: 60px 20px;
@@ -190,7 +206,7 @@ to{opacity:1;transform:translateY(0)}
 }
 
 @media(max-width:900px){
-.roadmap-grid { grid-template-columns: 1fr; }
+.grid, .roadmap-grid { grid-template-columns: 1fr; }
 .hero h1 { font-size: 60px; }
 }
 </style>
@@ -222,7 +238,7 @@ to{opacity:1;transform:translateY(0)}
 <section class="container" id="mission">
 <h2>The Mission</h2>
 <p>CleanClick aims to restore <strong>digital autonomy</strong> to surgeons. While operating rooms have advanced, interacting with digital data remains a bottleneck.</p>
-<p>Our solution utilizes surface Electromyography (sEMG) to translate micro-muscle impulses into digital commands, keeping surgeons in full control.</p>
+<p>Our solution utilizes surface Electromyography (sEMG) to translate micro-muscle impulses into digital commands. This keeps the surgeon in full control without breaking sterility.</p>
 </section>
 
 <section class="container" id="tech">
@@ -248,26 +264,37 @@ to{opacity:1;transform:translateY(0)}
 <h2 style="text-align:center;">The CleanClick Team</h2>
 
 <div class="team-grid">
+
 <div class="team-card">
 <div class="avatar-circle">AS</div>
 <h3>Arshiya Tasneem Shaik</h3>
+<p style="margin:5px 0; color:var(--accent2); font-weight:600;">Computer Science & Applied Physics</p>
+<p style="font-size:13px;">a.t.shaik@student.tue.nl</p>
+<a href="https://www.linkedin.com/in/arshiya-shaik-569753313/" class="li-link" target="_blank">LinkedIn Profile →</a>
 </div>
 
 <div class="team-card">
 <div class="avatar-circle">RT</div>
 <h3>Reinis Tjarve</h3>
+<p style="margin:5px 0; color:var(--accent2); font-weight:600;">Applied Physics</p>
+<p style="font-size:13px;">r.tjarve@student.tue.nl</p>
+<a href="https://www.linkedin.com/in/reinis-tjarve-79530b327/" class="li-link" target="_blank">LinkedIn Profile →</a>
 </div>
 
 <div class="team-card">
 <div class="avatar-circle">KG</div>
 <h3>Kristaps Grava</h3>
-</div>
+<p style="margin:5px 0; color:var(--accent2); font-weight:600;">Mechanical Engineering</p>
+<p style="font-size:13px;">k.grava@student.tue.nl</p>
+<a href="https://www.linkedin.com/in/kristaps-grava-215871326/" class="li-link" target="_blank">LinkedIn Profile →</a>
 </div>
 
+</div>
 </section>
 
 <footer>
-CleanClick — TU Eindhoven Contest Team 2026
+CleanClick — TU Eindhoven Contest Team 2026<br>
+<small style="opacity:0.6;">Solving the Sterile Barrier through Neuromuscular Innovation.</small>
 </footer>
 
 </body>
